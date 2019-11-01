@@ -20,6 +20,7 @@ const Bargraph = ({data}) => {
         for(let i = 0; i < _array.length; i ++) {
             _showBar[i] = (<ArrayBar 
                                 key={i}
+                                index={i}
                                 value={_array[i]} 
                                 height={calcBarHeight(_heightPerUnit, _array[i])}
                                 width={_barWidth}
@@ -32,7 +33,6 @@ const Bargraph = ({data}) => {
     const barStyle = {
         height: '600px',
         width: '800px',
-        
         background: 'white',
         display: 'flex',
         alignItems: 'flex-end'

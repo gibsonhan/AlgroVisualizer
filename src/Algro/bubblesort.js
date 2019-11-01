@@ -1,3 +1,5 @@
+import { nearer } from "q"
+
 const bubblesort = (array) => {
     let arr = array 
     let sortedIndex = arr.length
@@ -20,10 +22,39 @@ const bubblesort = (array) => {
     return arr
 } 
 
-const swap = (a, b, array) => {
-    let temp = array[a]
-    array[a] = array[b]
-    array[b] = temp
+const swap = (a, b, _array) => {
+    let temp = _array[a]
+    _array[a] = _array[b]
+    _array[b] = temp
 }
 
-export default { bubblesort }
+const bubblesortReact = (_sort) => {
+    var sort = _sort
+    var sortedIndex = _sort.length
+    var bubbleState = [[...sort]]
+
+    for(let start = 0; start < sortedIndex; sortedIndex--) {
+        for(let j = start+1; j < sortedIndex; j++) {
+            if(sort[j-1] > [j]) {
+                swap(j-1, j, sort)
+            }
+        }
+        /** Need to look into the javascript under the hood? [ ] Extra homework
+         *  https://dev.to/antonio_pangall/best-practices-to-keep-objects-and-arrays-immutable-in-javascript-3nmm
+         *  Need to look into array compy and address for javascript
+         *  Apparently pushing(array) 
+         *  updates the entire array?
+         *  
+         * need to a new copy of the array each time
+         */
+        const newArray = [...sort]
+        bubbleState.push(newArray)
+    }
+    
+    return bubbleState
+}
+
+export { 
+    bubblesort,
+    bubblesortReact,
+}
